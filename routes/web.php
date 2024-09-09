@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivePeopleController;
 use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\peoplecontroller;
 use App\Http\Controllers\singInController;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [singInController::class, 'loginfrom'])->name('login.form');
+Route::get('login', [singInController::class, 'loginfrom'])->name('login.form');
 
 Route::post('login', [singInController::class, 'login'])->name('login');
 
@@ -29,3 +30,6 @@ Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.
 
 Route::get('register', [registerController::class, 'registerfrom'])->name('register');
 Route::post('register', [registerController::class, 'register'])->name('register.into');
+
+
+Route::get('/', [ActivePeopleController::class, 'Getform'])->name('addform');
