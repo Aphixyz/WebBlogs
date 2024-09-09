@@ -27,12 +27,19 @@ class ActivePeopleController extends Controller
             'content' => 'required|string|max:255',
             'connection' => 'required|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'category_id' => 'required|exists:categories,id',
         ]);
         $peopleId = Auth::id();
+
+
+        $imagePath = null;
         if ($req->hasFile('image')) {
-            $imagePath = $req->file('image')->store('images', 'public');
-        } else {
-            $imagePath = null;
+            $image = $req->file('image');
+            if ($image->isValid()) {
+                $imagePath = $image->move(public_path('images'), $image->getClientOriginalName());
+            } else {
+                return redirect()->back()->withErrors(['image' => 'Image upload failed.'])->withInput();
+            }
         }
 
         $blog = new Blog();
@@ -40,8 +47,9 @@ class ActivePeopleController extends Controller
         $blog->description = $validatedData['description'];
         $blog->content = $validatedData['content'];
         $blog->connection = $validatedData['connection'];
-        $blog->image = $imagePath;
+        $blog->image = $imagePath  ? 'images/' . $image->getClientOriginalName() : null ;
         $blog->user_id = $peopleId;
+        $blog->category_id = $validatedData['category_id'];
         $blog->save();
         return redirect()->back()->with('success', 'Blog created successfully!');
     }
