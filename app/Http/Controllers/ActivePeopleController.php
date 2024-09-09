@@ -7,10 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 class ActivePeopleController extends Controller
 {
-    public function Getform()
-    {
-        return view('people.addblog');
-    }
 
     public function getCategory()
     {
@@ -18,6 +14,13 @@ class ActivePeopleController extends Controller
 
         return view('people.addblog', compact('categories'));
     }
+
+    public function Getform()
+    {
+        $categories = Category::all();
+        return view('people.addblog', compact('categories')); 
+    }
+
 
     public function CreateBolg(Request $req)
     {
@@ -47,7 +50,7 @@ class ActivePeopleController extends Controller
         $blog->description = $validatedData['description'];
         $blog->content = $validatedData['content'];
         $blog->connection = $validatedData['connection'];
-        $blog->image = $imagePath  ? 'images/' . $image->getClientOriginalName() : null ;
+        $blog->image = $imagePath ? 'images/' . $image->getClientOriginalName() : null;
         $blog->user_id = $peopleId;
         $blog->category_id = $validatedData['category_id'];
         $blog->save();
