@@ -13,23 +13,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = [
-            [
-                'name' => 'people',
-                'email' => 'people@gmail.com',
-                'status' => '0',
-                'password' => bcrypt('1234')
-            ],
-            [
-                'name' => 'admin',
-                'email' => 'admin@gmail.com',
-                'status' => '1',
-                'password' => bcrypt('1234')
-            ],
+        // $users = [
+        //     [
+        //         'name' => 'people',
+        //         'email' => 'people@gmail.com',
+        //         'status' => '0',
+        //         'password' => bcrypt('1234')
+        //     ],
+        //     [
+        //         'name' => 'admin',
+        //         'email' => 'admin@gmail.com',
+        //         'status' => '1',
+        //         'password' => bcrypt('1234')
+        //     ],
 
-        ];
-        foreach ($users as $user) {
-            DB::table('users')->insert($user);
-        }
+        // ];
+        // $category = [
+        //     [
+        //         'name' => 'ท่องเที่ยว'
+        //     ]
+        // ];
+        // foreach ($category as $user) {
+        //     DB::table('categories')->insert($user);
+        // }
     }
 }
