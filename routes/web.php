@@ -11,22 +11,11 @@ Route::post('login', [SingInController::class, 'login'])->name('login');
 Route::get('register', [RegisterController::class, 'registerfrom'])->name('register');
 Route::post('register', [RegisterController::class, 'register'])->name('register.into');
 
-<<<<<<< Updated upstream
+
 // Admin Routes
 Route::middleware('admin')->group(function () {
     Route::get('/active/admin', [AdminController::class, 'active'])->name('admin.active');
 });
-=======
-Route::get('/active/admin', [admincontroller::class, 'active'])->name('admin.active')->middleware('admin');
-
-Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active')->middleware('people');
-Route::get('/form/getCreateBlod', [ActivePeopleController::class, 'Getform'])->name('people.getform')->middleware('people');
-Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add')->middleware('people');
-Route::get('/form/getCreateBlods', [ActivePeopleController::class, 'getCategory'])->name('people.selectCategory')->middleware('people');
-
-Route::get('register', [registerController::class, 'registerfrom'])->name('register');
-Route::post('register', [registerController::class, 'register'])->name('register.into');
->>>>>>> Stashed changes
 
 // People Routes
 Route::middleware('people')->group(function () {
