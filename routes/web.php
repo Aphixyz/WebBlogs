@@ -18,18 +18,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('login', [singInController::class, 'loginfrom'])->name('login.form');
-
+Route::get('/', [singInController::class, 'loginfrom'])->name('login.form');
 Route::post('login', [singInController::class, 'login'])->name('login');
 
 Route::get('/active/admin', [admincontroller::class, 'active'])->name('admin.active')->middleware('admin');
 
 Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active')->middleware('people');
-
-
+Route::get('/form/getCreateBlod', [ActivePeopleController::class, 'Getform'])->name('people.getfrom')->middleware('people');
+Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add')->middleware('people');
+Route::get('/category/active/people', [ActivePeopleController::class, 'getCategory'])->name('people.selectCategory')->middleware('people');
 
 Route::get('register', [registerController::class, 'registerfrom'])->name('register');
 Route::post('register', [registerController::class, 'register'])->name('register.into');
 
 
-Route::get('/', [ActivePeopleController::class, 'Getform'])->name('addform');
+
+

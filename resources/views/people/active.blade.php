@@ -8,5 +8,7 @@
 </head>
 <body>
     <h1>People</h1>
+
+    <a href="{{route('people.getfrom')}}">add</a>
 </body>
 </html>

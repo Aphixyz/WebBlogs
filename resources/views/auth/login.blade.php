@@ -28,6 +28,7 @@
 
         <button type="submit">Login</button>
     </form>
+    <a href="{{ route('register') }}">register</a>
 </body>
 
 </html>
