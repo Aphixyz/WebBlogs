@@ -17,7 +17,6 @@ class ActivePeopleController extends Controller
         $categories = Category::all();
 
         return view('people.addblog', compact('categories'));
-        //return $categories;
     }
 
     public function CreateBolg(Request $req)

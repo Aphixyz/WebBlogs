@@ -23,7 +23,7 @@
             @foreach ($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
-        </select><br><br>
+        </select>
 
         <div class="flex justify-end">
             <button type="submit">Submit</button>
