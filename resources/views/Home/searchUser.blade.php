@@ -4,7 +4,7 @@
     <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
         <div class="page-wrapper">
             <div class="blog-top clearfix">
-                <h4 class="pull-left">บทความทั้งหมด <a href="#"><i class="fa fa-rss"></i></a>
+                <h4 class="pull-left">บทความผู้เขียนของ "{{ $userName }}" <a href="#"><i class="fa fa-rss"></i></a>
                 </h4>
             </div><!-- end blog-top -->
 
@@ -36,32 +36,5 @@
             </div><!-- end blog-list -->
         </div><!-- end page-wrapper -->
         <hr class="invis">
-        <div class="row">
-            <div class="col-md-12">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-start">
-                        @if ($blogs->onFirstPage())
-                            <li class="page-item disabled"><span class="page-link">Previous</span>
-                            </li>
-                        @else
-                            <li class="page-item"><a class="page-link" href="{{ $blogs->previousPageUrl() }}">Previous</a>
-                            </li>
-                        @endif
-
-                        @for ($i = 1; $i <= $blogs->lastPage(); $i++)
-                            <li class="page-item {{ $i == $blogs->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $blogs->url($i) }}">{{ $i }}</a>
-                            </li>
-                        @endfor
-
-                        @if ($blogs->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $blogs->nextPageUrl() }}">Next</a></li>
-                        @else
-                            <li class="page-item disabled"><span class="page-link">Next</span></li>
-                        @endif
-                    </ul>
-                </nav>
-            </div><!-- end col -->
-        </div><!-- end row -->
     </div><!-- end col -->
 @endSection

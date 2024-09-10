@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->text('description');
             $table->string('content');
-            $table->integer('connection');
+            $table->integer('connection')->default(0);
             $table->string('image');
 
             $table->unsignedBigInteger("category_id")->nullable();
@@ -27,7 +27,6 @@ return new class extends Migration {
             //ref
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
-
         });
     }
 
