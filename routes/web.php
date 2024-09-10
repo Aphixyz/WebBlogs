@@ -16,6 +16,9 @@ Route::post('register', [registerController::class, 'register'])->name('register
 
 
 Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/blog/{id}', [BlogController::class, 'blogDetail'])->name('blogDetail');
+Route::get('blog/category/{category_id}', [BlogController::class, 'searchCategory'])->name('searchCategory');
+Route::get('/blog/writer/{user_id}', [BlogController::class, 'searchUser'])->name('searchUser');
 
 // Admin Routes
 Route::middleware('admin')->group(function () {

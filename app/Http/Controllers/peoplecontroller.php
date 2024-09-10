@@ -10,7 +10,4 @@ class PeopleController extends Controller
     {
         return view('people.active');
     }
-
-
-
 }
