@@ -4,7 +4,6 @@ use App\Http\Controllers\registerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ActivePeopleController;
 use App\Http\Controllers\Peoplecontroller;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SingInController::class, 'loginfrom'])->name('login.form');
 Route::post('login', [SingInController::class, 'login'])->name('login');
