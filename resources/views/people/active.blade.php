@@ -14,6 +14,9 @@
             <p>Welcome, {{ session('message') }}!</p>
         @endif
     </h1>
+    <form action="">
+        
+    </form>
 
     <a href="{{ route('people.getfrom') }}">add</a>
 </body>
