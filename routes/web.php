@@ -14,13 +14,16 @@ Route::post('register', [registerController::class, 'register'])->name('register
 
 // Admin Routes
 Route::middleware('admin')->group(function () {
-    Route::get('/active/admin', [AdminController::class, 'active'])->name('admin.active');
+    Route::get('/active', [AdminController::class, 'active'])->name('admin.active');
+    Route::get('/active/admin', [AdminController::class, 'getBlogForAdmin'])->name('admin.getblog');
+    Route::get('/active/addmin/addfrom', [AdminController::class, 'activeAddCategory'])->name('admin.formaddcategory');
+    Route::post('/active/addmin/addfrom', [AdminController::class, 'createCategory'])->name('admin.addcategory');
+    Route::get('/active/addmin/category', [AdminController::class, 'getCategory'])->name('admin.getCategory');
 });
 
 // People Routes
 Route::middleware('people')->group(function () {
     Route::get('/active/people/from', [ActivePeopleController::class, 'Getform'])->name('people.getfrom');
-    Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active');
 });

@@ -27,7 +27,9 @@ class singInController extends Controller
 
         // Attempt to log the user in
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            
             $user = Auth::user();
+            session()->put('message', $user->name);
 
             //admin
             if ($user->status == 1) {
