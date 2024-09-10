@@ -1,9 +1,12 @@
 <?php
+
 use App\Http\Controllers\SingInController;
 use App\Http\Controllers\registerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ActivePeopleController;
 use App\Http\Controllers\Peoplecontroller;
+use App\Http\Controllers\BlogController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SingInController::class, 'loginfrom'])->name('login.form');
 Route::post('login', [SingInController::class, 'login'])->name('login');
@@ -11,6 +14,8 @@ Route::post('login', [SingInController::class, 'login'])->name('login');
 Route::get('register', [registerController::class, 'registerfrom'])->name('register');
 Route::post('register', [registerController::class, 'register'])->name('register.into');
 
+
+Route::get('/blog', [BlogController::class, 'index']);
 
 // Admin Routes
 Route::middleware('admin')->group(function () {
@@ -27,6 +32,3 @@ Route::middleware('people')->group(function () {
     Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active');
 });
-
-
-
