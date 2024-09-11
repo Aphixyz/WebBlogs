@@ -18,7 +18,7 @@ class ActivePeopleController extends Controller
     public function Getform()
     {
         $categories = Category::all();
-        return view('people.addblog', compact('categories')); 
+        return view('people.addblog', compact('categories'));
     }
 
 
@@ -28,7 +28,6 @@ class ActivePeopleController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'content' => 'required|string|max:255',
-            'connection' => 'required|integer',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -49,7 +48,7 @@ class ActivePeopleController extends Controller
         $blog->name = $validatedData['name'];
         $blog->description = $validatedData['description'];
         $blog->content = $validatedData['content'];
-        $blog->connection = $validatedData['connection'];
+        $blog->connection = 0 ;
         $blog->image = $imagePath ? 'images/' . $image->getClientOriginalName() : null;
         $blog->user_id = $peopleId;
         $blog->category_id = $validatedData['category_id'];
