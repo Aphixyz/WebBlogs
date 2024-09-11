@@ -18,6 +18,8 @@
     <a href="{{ route('admin.formaddcategory') }}">add category</a>
     <a href="{{ route('admin.getCategory') }}">get category</a>
     <a href="{{ route('admin.getfromblog') }}">add blog</a>
+
+    <a href="{{route('logout')}}">logout</a>
 </body>
 
 </html>
