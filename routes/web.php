@@ -24,8 +24,10 @@ Route::get('/blog/writer/{user_id}', [BlogController::class, 'searchUser'])->nam
 Route::middleware('admin')->group(function () {
     Route::get('/active', [AdminController::class, 'active'])->name('admin.active');
     Route::get('/active/admin', [AdminController::class, 'getBlogForAdmin'])->name('admin.getblog');
+    Route::get('/active/admin/addblog', [AdminController::class, 'adminCreateblog'])->name('admin.getfromblog');
     Route::get('/active/addmin/addfrom', [AdminController::class, 'activeAddCategory'])->name('admin.formaddcategory');
     Route::post('/active/addmin/addfrom', [AdminController::class, 'createCategory'])->name('admin.addcategory');
+    Route::post('/active/addmin/addfrom', [AdminController::class, 'CreateBolg'])->name('admin.addblod');
     Route::get('/active/addmin/category', [AdminController::class, 'getCategory'])->name('admin.getCategory');
 });
 
