@@ -13,7 +13,7 @@
                     <div class="blog-box row">
                         <div class="col-md-4">
                             <div class="post-media">
-                                <a href="#" title="">
+                                <a href="{{ route('blogDetail', $blog->id) }}" title="">
                                     <img src="{{ asset($blog->image) }}" alt="" class="img-fluid">
                                     <div class="hovereffect"></div>
                                 </a>
