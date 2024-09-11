@@ -25,7 +25,6 @@ class admincontroller extends Controller
         return view('admin.addblogadmin', compact('categories'));
     }
 
-
     public function CreateBolg(Request $req)
     {
         $validatedData = $req->validate([

@@ -15,8 +15,28 @@
         @endif
     </h1>
     <form action="">
-        
+
     </form>
 
     <a href="{{ route('people.getfrom') }}">add</a>
+
+    <div class="container">
+        @foreach ($blogs as $item)
+            <div class="">
+                <div class="">
+                    {{ $item->thod }}<br>
+                    {{ $item->description }}<br>
+                    {{ $item->connection }}<br>
+                    <img src="{{ asset($item->image) }}" width="100px" height="100px" alt="">
+                    <br>
+                </div>
+            </div>
+            <hr><br>
+        @endforeach
+    </div>
+
+
+
+
+
 </body>
