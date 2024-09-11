@@ -34,6 +34,7 @@ Route::middleware('admin')->group(function () {
 // People Routes
 Route::middleware('people')->group(function () {
     Route::get('/active/people/from', [ActivePeopleController::class, 'Getform'])->name('people.getfrom');
+    // Route::get('/active/people/blog/json', [Peoplecontroller::class, 'getBlog'])->name('people.getblog');
     Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active');
 });
