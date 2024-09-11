@@ -13,6 +13,12 @@ class singInController extends Controller
         return view('auth.login');
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
+
     public function login(Request $request)
     {
         // Validate the form data
@@ -27,7 +33,7 @@ class singInController extends Controller
 
         // Attempt to log the user in
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            
+
             $user = Auth::user();
             session()->put('message', $user->name);
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SingInController::class, 'loginfrom'])->name('login.form');
 Route::post('login', [SingInController::class, 'login'])->name('login');
-
+Route::get('logout', [SingInController::class, 'logout'])->name('logout');
 Route::get('register', [registerController::class, 'registerfrom'])->name('register');
 Route::post('register', [registerController::class, 'register'])->name('register.into');
 
