@@ -2,175 +2,78 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <!-- Import Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
-<body>
-    <form action="{{ route('register.into') }}" method="post" class="main">
-        @csrf
-        {{-- <label for="name">Name:</label> --}}
-        <p class="sign">Register</p>
-        <input class="pass" type="text" id="name" name="name"  value="{{ old('name') }}" required placeholder="Name">
-        @error('name')
-            <div class="error-message">{{ $message }}</div>
-        @enderror
+<body class="bg-gray-50">
 
-        {{-- <label for="email">Email:</label> --}}
-        <input class="pass" type="email" id="email" name="email" value="{{ old('email') }}" required placeholder="Email">
-        @error('email')
-            <div class="error-message">{{ $message }}</div>
-        @enderror
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+            <img class="mx-auto h-20 w-auto" src="https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-colorful-blog-speech-bubble-vector-png-image_6633021.png" alt="Your Company">
+            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+        </div>
 
-        {{-- <label for="password">Password:</label> --}}
-        <input class="pass" type="password" id="password" name="password" required placeholder="Password">
-        @error('password')
-            <div class="error-message">{{ $message }}</div>
-        @enderror
+        <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form class="space-y-6" method="POST" action="{{ route('register.into') }}">
+                @csrf
+                <div>
+                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <div class="mt-1">
+                        <input id="name" name="name" type="text" value="{{ old('name') }}" required
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                    @error('name')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
 
-        {{-- <label for="password_confirmation">Confirm Password:</label> --}}
-        <input class="pass" type="password" id="password_confirmation" name="password_confirmation" required placeholder="ConfirmPassword">
+                <div>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <div class="mt-1">
+                        <input id="email" name="email" type="email" value="{{ old('email') }}" required
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                    @error('email')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
 
-        <button class="reg" type="submit">Register</button>
+                <div>
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <div class="mt-1">
+                        <input id="password" name="password" type="password" required
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                    @error('password')
+                    <div class="text-red-500 text-sm">{{ $message }}</div>
+                    @enderror
+                </div>
 
-        <p class="toLog"><a   href="{{ route('login.form') }}">to login</a></p>
-    </form>
+                <div>
+                    <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+                    <div class="mt-1">
+                        <input id="password_confirmation" name="password_confirmation" type="password" required
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="button" class="flex w-full justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Register</button>
+                </div>
+            </form>
+
+            <p class="mt-5 text-center text-sm text-gray-500">
+                Already have an account?
+                <a href="{{ route('login.form') }}" class="font-semibold text-orange-500 hover:text-amber-500">Login</a>
+            </p>
+        </div>
+    </div>
+
 </body>
-
-<style>
-     body {
-        background-color: #F3EBF6;
-        font-family: 'Ubuntu', sans-serif;
-    }
-
-    .main {
-        background-color: #FFFFFF;
-        width: 400px;
-        height: 500px;
-        margin: 7em auto;
-        border-radius: 1.5em;
-        box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
-    }
-
-    .sign {
-        padding-top: 40px;
-        color: #8C55AA;
-        font-family: 'Ubuntu', sans-serif;
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-    }
-
-
-    /* .un {
-    width: 76%;
-    color: rgb(38, 50, 56);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    outline: none;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.02);
-    margin-bottom: 50px;
-    margin-left: 46px;
-    text-align: center;
-    margin-bottom: 27px;
-    font-family: 'Ubuntu', sans-serif;
-    } */
-
-    form.form1 {
-        padding: auto;
-    }
-
-    .pass {
-            width: 76%;
-            color: rgb(38, 50, 56);
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 1px;
-            background: rgba(136, 126, 126, 0.04);
-            padding: 10px 20px;
-            border: none;
-            border-radius: 20px;
-            outline: none;
-            box-sizing: border-box;
-            border: 2px solid rgba(0, 0, 0, 0.02);
-            margin-bottom: 50px;
-            margin-left: 46px;
-            text-align: center;
-            margin-bottom: 27px;
-            font-family: 'Ubuntu', sans-serif;
-    }
-
-
-    .pass:focus, .pass:focus {
-        border: 2px solid rgba(0, 0, 0, 0.18) !important;
-
-    }
-
-    .submit {
-      cursor: pointer;
-        border-radius: 5em;
-        color: #fff;
-        background: linear-gradient(to right, #9C27B0, #E040FB);
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 35%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
-    .reg {
-        cursor: pointer;
-        border-radius: 5em;
-        color: #fff;
-        background: linear-gradient(to right, #9C27B0, #E040FB);
-        border: 0;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-bottom: 10px;
-        padding-top: 10px;
-        font-family: 'Ubuntu', sans-serif;
-        margin-left: 35%;
-        font-size: 13px;
-        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
-    }
-
-    .toLog {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
-        padding-top: 15px;
-        text-align: center;
-    }
-
-    a {
-        text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
-        color: #E1BEE7;
-        text-align: center;
-    }
-
-    .error-message {
-        color: red;
-        font-size: 14px;
-        /* margin-left: 40px;
-        margin-bottom: 10px; */
-        text-align: center;
-}
-
-    @media (max-width: 600px) {
-        .main {
-            border-radius: 0px;
-        }
-</style>
 
 </html>
