@@ -14,7 +14,7 @@ class BlogController extends Controller
     {
         $categories = Category::all();
         $blogs = Blog::paginate(3);
-        $latest = Blog::orderBy('id', 'desc')->take(3)->get(); //แสดง 2 บทความล่าสุด
+        $latest = Blog::orderBy('id', 'desc')->take(3)->get(); //แสดง 3 บทความล่าสุด
         $popular = Blog::orderBy('connection', 'desc')->take(3)->get(); // บทความยอดนิยมมากที่สุด
         $suggestion = Blog::orderBy('connection', 'asc')->take(3)->get(); // บทความยอดนิยมน้อยที่สุด
         return view('Home.index', compact('categories', 'blogs', 'latest', 'popular', 'suggestion'));
