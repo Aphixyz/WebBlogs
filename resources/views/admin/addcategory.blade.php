@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="{{ route('admin.formaddcategory') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.addcategory') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="text" name="name" id="name" required placeholder="category">
         <button type="submit">Submit</button>
