@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+
 class singInController extends Controller
 {
     public function loginfrom()
@@ -47,7 +48,6 @@ class singInController extends Controller
             }
         }
 
-        return Redirect::back()->withErrors(['email' => 'Invalid email or password.'])->withInput();
+        return Redirect::back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')->withInput();
     }
-
 }
