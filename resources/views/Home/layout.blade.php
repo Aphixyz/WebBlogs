@@ -26,15 +26,15 @@
                         aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="/blog"><img
+                    <a class="navbar-brand" href="/"><img
                             src="{{ asset('static/frontend/images/version/tech-logo.png') }}" alt=""></a>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/blog">Home</a>
+                                <a class="nav-link" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/blog">writer</a>
+                                <a class="nav-link" href="/login">writer</a>
                             </li>
                         </ul>
                     </div>
