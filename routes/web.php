@@ -8,14 +8,14 @@ use App\Http\Controllers\Peoplecontroller;
 use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [SingInController::class, 'loginfrom'])->name('login.form');
+Route::get('/login', [SingInController::class, 'loginfrom'])->name('login.form');
 Route::post('login', [SingInController::class, 'login'])->name('login');
 Route::get('logout', [SingInController::class, 'logout'])->name('logout');
 Route::get('register', [registerController::class, 'registerfrom'])->name('register');
 Route::post('register', [registerController::class, 'register'])->name('register.into');
 
 
-Route::get('/blog', [BlogController::class, 'index']);
+Route::get('/', [BlogController::class, 'index']);
 Route::get('/blog/{id}', [BlogController::class, 'blogDetail'])->name('blogDetail');
 Route::get('blog/category/{category_id}', [BlogController::class, 'searchCategory'])->name('searchCategory');
 Route::get('/blog/writer/{user_id}', [BlogController::class, 'searchUser'])->name('searchUser');
@@ -33,8 +33,9 @@ Route::middleware('admin')->group(function () {
 
 // People Routes
 Route::middleware('people')->group(function () {
-    Route::get('/active/people/from', [ActivePeopleController::class, 'Getform'])->name('people.getfrom');
+    Route::get('/active/people/from', [Peoplecontroller::class, 'getBlog'])->name('people.getfrom');
     // Route::get('/active/people/blog/json', [Peoplecontroller::class, 'getBlog'])->name('people.getblog');
     Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active');
+    Route::get('/deleteData/{id}', [ActivePeopleController::class, 'deleteData'])->name('deleteData');
 });
