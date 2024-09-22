@@ -38,4 +38,6 @@ Route::middleware('people')->group(function () {
     Route::post('/active/people/addblog', [ActivePeopleController::class, 'CreateBolg'])->name('people.add');
     Route::get('/active/people', [peoplecontroller::class, 'active'])->name('people.active');
     Route::get('/deleteData/{id}', [ActivePeopleController::class, 'deleteData'])->name('deleteData');
+    Route::get('/editData/{id}', [ActivePeopleController::class, 'editData'])->name('editData');
+    Route::put('/updateData/{id}', [ActivePeopleController::class, 'updateData'])->name('updateData');
 });

@@ -35,8 +35,8 @@
                         <td class="hidden-xs text-center">{{ $item->category->name }}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">
-                                <a href="#" data-toggle="tooltip" title="Edit" class="btn btn-default"><i
-                                        class="fa fa-pencil"></i></a>
+                                <a href="{{ url('editData', $item->id) }}" data-toggle="tooltip" title="Edit"
+                                    class="btn btn-default"><i class="fa fa-pencil"></i></a>
                                 <!-- ปุ่ม Delete ใช้ JavaScript -->
                                 <button class="btn btn-xs btn-danger" onclick="confirmDelete({{ $item->id }})">
                                     <i class="fa fa-times"></i>
