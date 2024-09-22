@@ -60,9 +60,13 @@
         </div>
         <div class="form-group">
             <div class="col-md-12">
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i>บันทึก</button>
+                <button type="submit" class="btn btn-sm btn-primary">
+                    <i class="fa fa-angle-right"></i> บันทึก
+                </button>
+                <a class="block text-right text-blue-500 no-underline" href="{{route('admin.getblog')}}">ดูบล็อกทั้งหมด</a>
             </div>
         </div>
+
     </form>
 
     <style>

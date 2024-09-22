@@ -29,6 +29,17 @@ Route::middleware('admin')->group(function () {
     Route::post('/active/addmin/addfromcategory', [AdminController::class, 'createCategory'])->name('admin.addcategory');
     Route::post('/active/addmin/addfrom', [AdminController::class, 'CreateBolg'])->name('admin.addblod');
     Route::get('/active/addmin/category', [AdminController::class, 'getCategory'])->name('admin.getCategory');
+    Route::get('/admin/categories/edit/{id}', [AdminController::class, 'editCategory'])->name('admin.editCategory');
+    Route::put('/admin/categories/update/{id}', [Admincontroller::class, 'updateCategory'])->name('admin.updateCategory');
+    Route::delete('/active/addmin/category/delete/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
+
+    Route::get('/admin/blogs/edit/{id}', [AdminController::class, 'editBlog'])->name('admin.editBlog');
+    Route::delete('/admin/blogs/delete/{id}', [AdminController::class, 'deleteBlog'])->name('admin.deleteBlog');
+    Route::put('/admin/blogs/update/{id}', [AdminController::class, 'updateBlog'])->name('admin.updateBlog');
+
+
+
+
 });
 
 // People Routes

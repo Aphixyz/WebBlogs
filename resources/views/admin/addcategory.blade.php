@@ -14,7 +14,7 @@
         <input type="text" name="name" id="name" required placeholder="category">
         <button type="submit">Submit</button>
     </form>
-    <a href="{{ route('admin.getblog') }}">black</a>
+    <a href="{{ route('admin.active') }}">black</a>
 </body>
 
 </html>

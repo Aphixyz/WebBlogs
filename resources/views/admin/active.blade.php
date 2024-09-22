@@ -13,13 +13,15 @@
         @if (session('message'))
             <p>Welcome, {{ session('message') }}!</p>
         @endif
-    </h1>
-    <a href="{{ route('admin.getblog') }}">get blog</a>
-    <a href="{{ route('admin.formaddcategory') }}">add category</a>
-    <a href="{{ route('admin.getCategory') }}">get category</a>
-    <a href="{{ route('admin.getfromblog') }}">add blog</a>
+    <form action="{{route('admin.active')}}">
+        </h1>
+        <a href="{{ route('admin.getblog') }}">get blog</a>
+        <a href="{{ route('admin.formaddcategory') }}">add category</a>
+        <a href="{{ route('admin.getCategory') }}">get category</a>
+        <a href="{{ route('admin.getfromblog') }}">add blog</a>
 
-    <a href="{{route('logout')}}">logout</a>
+        <a href="{{route('logout')}}">logout</a>
+    </form>
 </body>
 
 </html>
