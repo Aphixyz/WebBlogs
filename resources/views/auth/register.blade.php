@@ -43,7 +43,7 @@
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">ชื่อ</label>
                     <div class="mt-1">
                         <input id="name" name="name" type="text" value="{{ old('name') }}" required
-                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                     @error('name')
                         <div class="text-red-500 text-sm">{{ $message }}</div>
@@ -54,7 +54,7 @@
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">อีเมลล์</label>
                     <div class="mt-1">
                         <input id="email" name="email" type="email" value="{{ old('email') }}" required
-                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                     @error('email')
                         <div class="text-red-500 text-sm">{{ $message }}</div>
@@ -65,7 +65,7 @@
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">รหัสผ่าน</label>
                     <div class="mt-1 relative">
                         <input id="password" name="password" type="password" required
-                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         <button type="button" onclick="togglePassword('password', this)"
                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600">
                             <i class="fas fa-eye-slash"></i>
@@ -77,7 +77,7 @@
                     <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-900">ยืนยันรหัสผ่าน</label>
                     <div class="mt-1 relative">
                         <input id="password_confirmation" name="password_confirmation" type="password" required
-                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-blue-600 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         <button type="button" onclick="togglePassword('password_confirmation', this)"
                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600">
                             <i class="fas fa-eye-slash"></i>
