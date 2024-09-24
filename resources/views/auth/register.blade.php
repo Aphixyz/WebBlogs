@@ -13,7 +13,7 @@
 </head>
 
 
-<body class="bg-gray-50">
+<body class="bg-sky-200">
     <div id="successPopup" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
         <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
             <div class="mt-3 text-center">
@@ -31,16 +31,16 @@
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <img class="mx-auto h-20 w-auto"
-                src="https://png.pngtree.com/png-vector/20230304/ourmid/pngtree-colorful-blog-speech-bubble-vector-png-image_6633021.png"
+                src="https://logo.com/image-cdn/images/kts928pd/production/3d0a1942ea617825e187c3c9a3811a5d93a331be-370x366.png?w=1080&q=72&fm=webp"
                 alt="Your Company">
-            <h2 class="mt-5 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Register</h2>
+            <h2 class="mt-5 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900">สมัครผู้ใช้งาน</h2>
         </div>
 
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" method="POST" action="{{ route('register.into') }}">
                 @csrf
                 <div>
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">ชื่อ</label>
                     <div class="mt-1">
                         <input id="name" name="name" type="text" value="{{ old('name') }}" required
                             class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">อีเมลล์</label>
                     <div class="mt-1">
                         <input id="email" name="email" type="email" value="{{ old('email') }}" required
                             class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -62,7 +62,7 @@
                 </div>
 
                 <div>
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">รหัสผ่าน</label>
                     <div class="mt-1 relative">
                         <input id="password" name="password" type="password" required
                             class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -74,8 +74,7 @@
                 </div>
 
                 <div>
-                    <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-900">Confirm
-                        Password</label>
+                    <label for="password_confirmation" class="block text-sm font-medium leading-6 text-gray-900">ยืนยันรหัสผ่าน</label>
                     <div class="mt-1 relative">
                         <input id="password_confirmation" name="password_confirmation" type="password" required
                             class="block w-full rounded-md border-0 py-1.5 pl-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -99,13 +98,13 @@
 
                 <div>
                     <button type="submit"
-                        class="flex w-full justify-center text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Register</button>
+                        class="flex w-full justify-center text-white bg-gradient-to-br from-sky-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">สมัคร</button>
                 </div>
             </form>
 
             <p class="mt-5 text-center text-sm text-gray-500">
-                Already have an account?
-                <a href="{{ route('login.form') }}" class="font-semibold text-orange-500 hover:text-amber-500">Login</a>
+                ล็อคอินได้ที่นี่เลย
+                <a href="{{ route('login.form') }}" class="font-semibold text-blue-600 hover:text-sky-400">ล็อคอิน</a>
             </p>
         </div>
     </div>
