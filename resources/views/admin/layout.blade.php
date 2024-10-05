@@ -83,7 +83,7 @@
                                 class="sidebar-nav-mini-hide">Catego</span></a>
                             <ul>
                                 <li>
-                                    <a href={{ route('admin.formaddcategory') }}>AddCatagory</a>
+                                    <a href={{ route('admin.getCategory') }}>Catagory</a>
                                 </li>
                             </li>
                         </ul>
