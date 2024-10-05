@@ -36,10 +36,6 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/blogs/edit/{id}', [AdminController::class, 'editData'])->name('admin.editData');
     Route::delete('/admin/blogs/delete/{id}', [AdminController::class, 'deleteData'])->name('admin.deleteData');
     Route::put('/admin/blogs/update/{id}', [AdminController::class, 'updateData'])->name('admin.updateData');
-
-
-
-
 });
 
 // People Routes

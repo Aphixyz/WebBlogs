@@ -9,10 +9,9 @@
 
         <!-- END Form Elements Title -->
         <!-- Basic Form Elements Content -->
-        <form id="update-form" enctype="multipart/form-data" class="form-horizontal form-bordered">
+        <form id="update-form" enctype="multipart/form-data" class="form-horizontal form-bordered" method="POST">
             @csrf
             @method('PUT')
-
             <div class="form-group">
                 <div class="col-md-6">
                     <input type="text" id="name" name="name" class="form-control" placeholder="ชื่อบทความ"
@@ -104,8 +103,8 @@
             var formData = new FormData(form); // เก็บข้อมูลจากฟอร์ม
 
             $.ajax({
-                url: '{{ url('updateData', $blogEdit->id) }}', // URL สำหรับส่งข้อมูล
-                type: 'POST',
+                url: '{{ route('admin.updateData', $blogEdit->id) }}', // ให้ใช้ route ที่ถูกต้องจาก web.php
+                type: 'POST', // กำหนด type เป็น 'POST'
                 data: formData,
                 processData: false,
                 contentType: false,
