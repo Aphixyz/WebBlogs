@@ -61,7 +61,7 @@
                                         class="sidebar-nav-mini-hide">Forms</span></a>
                                 <ul>
                                     <li>
-                                        <a href="#">General</a>
+                                        <a href="{{ route('people.getfrom') }}">เขียนบทความ</a>
                                     </li>
                                 </ul>
                             </li>
@@ -72,7 +72,7 @@
                                         class="sidebar-nav-mini-hide">Tables</span></a>
                                 <ul>
                                     <li>
-                                        <a href="#">General</a>
+                                        <a href="{{ route('people.active') }}">ดูจำนวนบทความ</a>
                                     </li>
                                 </ul>
                             </li>
@@ -143,7 +143,7 @@
                 <!-- Page content -->
                 <div id="page-content">
                     <!-- Mini Top Stats Row -->
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-sm-6 col-lg-3">
                             <!-- Widget -->
                             <a href="{{ route('people.getfrom') }}" class="widget widget-hover-effect1">
@@ -189,7 +189,7 @@
                             </a>
                             <!-- END Widget -->
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- END Mini Top Stats Row -->
                     @yield('block-content')
                 </div>
