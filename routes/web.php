@@ -23,7 +23,11 @@ Route::get('/blog/writer/{user_id}', [BlogController::class, 'searchUser'])->nam
 // Admin Routes
 Route::middleware('admin')->group(function () {
     Route::get('/active', [AdminController::class, 'active'])->name('admin.active');
-    Route::get('/active/admin', [AdminController::class, 'getBlogForAdmin'])->name('admin.getblog');
+    // Route::get('/active/admin', [AdminController::class, 'getBlogForAdmin'])->name('admin.getblog');
+    Route::get('/active/people', [AdminController::class, 'active'])->name('people.active');
+    Route::get('/deleteData/{id}', [AdminController::class, 'deleteData'])->name('deleteData');
+    Route::get('/editData/{id}', [AdminController::class, 'editData'])->name('editData');
+    Route::put('/updateData/{id}', [AdminController::class, 'updateData'])->name('updateData');
     Route::get('/active/admin/addblog', [AdminController::class, 'adminCreateblog'])->name('admin.getfromblog');
     Route::get('/active/addmin/addfrom', [AdminController::class, 'activeAddCategory'])->name('admin.formaddcategory');
     Route::post('/active/addmin/addfromcategory', [AdminController::class, 'createCategory'])->name('admin.addcategory');
