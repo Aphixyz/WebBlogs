@@ -6,11 +6,13 @@ use App\Models\blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class admincontroller extends Controller
 {
     public function active()
     {
-        return view('admin.active');
+        $blogs = Blog::all(); // ดึงข้อมูลบทความทั้งหมด
+        return view('admin.active', compact('blogs'));
     }
     public function activeAddCategory()
     {
@@ -30,7 +32,7 @@ class admincontroller extends Controller
         $validatedData = $req->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'content' => 'required|string|max:255',
+            'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
@@ -59,64 +61,87 @@ class admincontroller extends Controller
         return redirect()->back()->with('success', 'Blog created successfully!');
     }
 
-    public function getBlogForAdmin()
+    public function deleteData($id)
     {
-        $blogs = Blog::with('category')->get();
-        return view('admin.getBlogs', compact('blogs'));
-    }
-    public function editBlog($id)
-    {
-        $blog = Blog::findOrFail($id);
-        $categories = Category::all();
-        return view('admin.editBlog', compact('blog', 'categories'));
+        try {
+            $blog = Blog::findOrFail($id);
+
+            // ตัวเลือก: ลบไฟล์ภาพหากมีอยู่
+            if ($blog->image) {
+                $oldImagePath = public_path($blog->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath); // ลบภาพเก่า
+                }
+            }
+
+            $blog->delete(); // ลบข้อมูลบล็อกจากฐานข้อมูล
+
+            return response()->json(['success' => 'บล็อกถูกลบสำเร็จ']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'เกิดข้อผิดพลาดในการลบบล็อก: ' . $e->getMessage()], 500);
+        }
     }
 
-    public function updateBlog(Request $req, $id)
+
+    public function editData($id)
     {
+        $writer = Auth::user();
+        $blogs = Blog::where('user_id', $writer->id)->get();
+        $blogCount = $blogs->count();
+        $viewCount = Blog::where('user_id', $writer->id)->sum('connection');
+        $categories = Category::all();
+        // ดึงข้อมูลบล็อกที่ต้องการแก้ไข
+        $blogEdit = Blog::findOrFail($id);
+        // ส่งข้อมูลไปที่ View เพื่อแสดงผลในฟอร์มแก้ไข
+        return view('admin.editForm', [
+            'blogEdit' => $blogEdit,
+            'writer' => $writer,
+            'blogCount' => $blogCount,
+            'viewCount' => $viewCount,
+            'categories' => $categories
+        ]);
+    }
+
+    public function updateData(Request $req, $id)
+{
+    try {
         $validatedData = $req->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'content' => 'required|string|max:255',
+            'content' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             'category_id' => 'required|exists:categories,id',
         ]);
 
         $blog = Blog::findOrFail($id);
 
-        // การอัปเดตค่าต่างๆ
-        $blog->name = $validatedData['name'];
-        $blog->description = $validatedData['description'];
-        $blog->content = $validatedData['content'];
-        $blog->category_id = $validatedData['category_id'];
-
-        // การอัปเดตภาพ
+        // อัปเดตรูปภาพถ้ามีการอัปโหลดรูปใหม่
         if ($req->hasFile('image')) {
             $image = $req->file('image');
             if ($image->isValid()) {
-                // ลบภาพเก่า (ถ้ามี)
                 if ($blog->image) {
-                    unlink(public_path($blog->image));
+                    $oldImagePath = public_path($blog->image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath); // ลบรูปเดิมถ้ามี
+                    }
                 }
-                $imagePath = $image->move(public_path('images'), $image->getClientOriginalName());
-                $blog->image = 'images/' . $image->getClientOriginalName();
-            } else {
-                return redirect()->back()->withErrors(['image' => 'Image upload failed.'])->withInput();
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $imagePath = $image->move(public_path('images'), $imageName);
+                $blog->image = 'images/' . $imageName;
             }
         }
 
-        $blog->save();
-        return redirect()->route('admin.getblog')->with('success', 'บล็อกถูกอัปเดตเรียบร้อยแล้ว');
+        $blog->name = $validatedData['name'];
+        $blog->category_id = $validatedData['category_id'];
+        $blog->description = $validatedData['description'];
+        $blog->content = $validatedData['content'];
+        $blog->save(); // บันทึกข้อมูลลงฐานข้อมูล
+
+        return redirect()->route('admin.active')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+    } catch (\Exception $e) {
+        return redirect()->route('admin.active')->with('error', 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
     }
-
-
-    public function deleteBlog($id)
-    {
-        $blog = Blog::findOrFail($id);
-        $blog->delete();
-        return redirect()->route('admin.getblog')->with('success', 'บล็อกถูกลบเรียบร้อยแล้ว');
-    }
-
-
+}
 
 
     public function getCategory()
@@ -162,5 +187,4 @@ class admincontroller extends Controller
 
         return redirect()->route('admin.getCategory')->with('success', 'ลบประเภทเรียบร้อยแล้ว');
     }
-
 }

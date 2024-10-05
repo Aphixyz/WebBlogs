@@ -1,15 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-
-<body>
-    <h1>
+    {{-- <h1>
         @if (session('message'))
             <p>Welcome, {{ session('message') }}!</p>
         @endif
@@ -21,7 +11,95 @@
         <a href="{{ route('admin.getfromblog') }}">add blog</a>
 
         <a href="{{route('logout')}}">logout</a>
-    </form>
-</body>
+    </form> --}}
 
-</html>
+    @extends('admin.layout')
+
+    @section('block-content')
+        <!-- ตารางบทความ -->
+        <div class="block full">
+            <!-- All Title -->
+            <div class="block-title">
+                <div class="block-options pull-right">
+                    <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i
+                            class="fa fa-cog"></i></a>
+                </div>
+                <h2><strong>บทความทั้งหมด</strong></h2>
+            </div>
+            <!-- Title -->
+
+            <!--Content -->
+            <table id="ecom-products" class="table table-bordered table-striped table-vcenter">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 70px;">รหัส</th>
+                        <th>ภาพปก</th>
+                        <th class="text-right hidden-xs">ชื่อบทความ</th>
+                        <th class="hidden-xs">ยอดเข้าชม (View)</th>
+                        <th class="hidden-xs text-center">หมวดหมู่บทความ</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($blogs as $item)
+                        <tr id="blog-{{ $item->id }}"> <!-- Add ID to the row for removal after delete -->
+                            <td class="text-center">{{ $item->id }}</td>
+                            <td><img src="{{ asset($item->image) }}" alt="" style="width: 60px; height: 50px"></td>
+                            <td class="text-right hidden-xs"><strong>{{ $item->name }}</strong></td>
+                            <td class="text-center">{{ $item->connection }}</td>
+                            <td class="hidden-xs text-center">{{ $item->category->name }}</td>
+                            <td class="text-center">
+                                <div class="btn-group btn-group-xs">
+                                    <a href="{{ route('admin.editData', $item->id) }}" data-toggle="tooltip" title="Edit"
+                                        class="btn btn-default"><i class="fa fa-pencil"></i></a>
+                                    <!-- ปุ่ม Delete ใช้ JavaScript -->
+                                    <button class="btn btn-xs btn-danger" onclick="confirmDelete({{ $item->id }})">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <!-- END All Products Content -->
+        </div>
+
+        <!-- JavaScript function to handle delete with confirmation -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            function confirmDelete(id) {
+                Swal.fire({
+                    title: 'คุณแน่ใจหรือไม่?',
+                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'ใช่, ลบเลย!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // AJAX request เพื่อลบบล็อก
+                        $.ajax({
+                            url: '{{ url('/admin/blogs/delete') }}/' + id,
+                            type: 'DELETE',
+                            data: {
+                                _token: '{{ csrf_token() }}', // รวม CSRF token
+                            },
+                            success: function(response) {
+                                Swal.fire('ลบแล้ว!', 'บล็อกของคุณถูกลบแล้ว.', 'success')
+                                    .then(() => {
+                                        location.reload(); // โหลดหน้าใหม่
+                                    });
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire('เกิดข้อผิดพลาด!', 'บางอย่างผิดพลาด.', 'error');
+                            }
+                        });
+                    }
+                });
+            }
+
+
+        </script>
+    @endsection

@@ -31,10 +31,13 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Home</a>
+                                <a class="nav-link" href="/">บทความ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">writer</a>
+                                <a class="nav-link" href="/login">ล็อคอิน</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">สมัครผู้เขียน</a>
                             </li>
                         </ul>
                     </div>
