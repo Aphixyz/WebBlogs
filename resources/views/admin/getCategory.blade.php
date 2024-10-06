@@ -57,7 +57,7 @@
 
 /* Titles */
 .title {
-    font-size: 1.875rem; /* 3xl */
+    font-size: 30px; /* 3xl */
     font-weight: bold;
     margin-bottom: 1.5rem;
     color: #4A5568; /* text-gray-700 */
@@ -70,6 +70,11 @@
 
 .input-group {
     margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none !important;
+
 }
 
 .input-field {
@@ -134,16 +139,17 @@
 
 /* Buttons in table */
 .edit-button {
-    background-color: #48BB78; /* bg-green-500 */
+    background-color: rgba(207, 177, 5, 0.644); /* bg-green-500 */
     color: white;
     font-weight: bold;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .edit-button:hover {
-    background-color: #38A169; /* hover:bg-green-700 */
+    background-color: rgb(197, 197, 12); /* hover:bg-green-700 */
 }
 
 .delete-button {
@@ -171,6 +177,7 @@
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
     transition: background-color 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .back-button:hover {

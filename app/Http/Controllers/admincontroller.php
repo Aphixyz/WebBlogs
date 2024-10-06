@@ -182,12 +182,9 @@ class admincontroller extends Controller
 
     public function deleteCategory($id)
     {
-        try {
-            $category = Category::findOrFail($id);
-            $category->delete();
-            return response()->json(['success' => true, 'message' => 'ลบประเภทเรียบร้อยแล้ว']);
-        } catch (\Exception $e) {
-            return response()->json(['success' => false, 'message' => 'เกิดข้อผิดพลาดในการลบประเภท'], 500);
-        }
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('admin.getCategory')->with('success', 'ลบประเภทเรียบร้อยแล้ว');
     }
 }
