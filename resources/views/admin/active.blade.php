@@ -71,35 +71,43 @@
             function confirmDelete(id) {
                 Swal.fire({
                     title: 'คุณแน่ใจหรือไม่?',
-                    text: "คุณจะไม่สามารถย้อนกลับได้!",
+                    text: "คุณจะไม่สามารถกู้ข้อมูลนี้กลับมาได้!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'ใช่, ลบเลย!'
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'ใช่, ลบเลย!',
+                    cancelButtonText: 'ยกเลิก'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // AJAX request เพื่อลบบล็อก
+                        // ใช้ Ajax เพื่อลบข้อมูล
                         $.ajax({
-                            url: '{{ url('/admin/blogs/delete') }}/' + id,
-                            type: 'DELETE',
-                            data: {
-                                _token: '{{ csrf_token() }}', // รวม CSRF token
-                            },
+                            url: "/deleteData/" + id, // เส้นทางในการลบข้อมูล
+                            type: 'GET', // ใช้ HTTP GET
                             success: function(response) {
-                                Swal.fire('ลบแล้ว!', 'บล็อกของคุณถูกลบแล้ว.', 'success')
-                                    .then(() => {
-                                        location.reload(); // โหลดหน้าใหม่
-                                    });
+                                // ถ้าสำเร็จ ลบแถวของบทความออก
+                                $("#blog-" + id).remove();
+
+                                // แสดงข้อความสำเร็จ
+                                Swal.fire({
+                                    title: 'ลบข้อมูลเรียบร้อย',
+                                    icon: 'success',
+                                    confirmButtonText: 'ตกลง',
+                                    timer: 2000 // ปิดอัตโนมัติหลังจาก 2 วินาที
+                                });
                             },
-                            error: function(xhr, status, error) {
-                                Swal.fire('เกิดข้อผิดพลาด!', 'บางอย่างผิดพลาด.', 'error');
+                            error: function(response) {
+                                // แสดงข้อผิดพลาดถ้ามีปัญหา
+                                Swal.fire({
+                                    title: 'เกิดข้อผิดพลาด',
+                                    text: 'ไม่สามารถลบข้อมูลได้',
+                                    icon: 'error',
+                                    confirmButtonText: 'ตกลง'
+                                });
                             }
                         });
                     }
-                });
+                })
             }
-
-
         </script>
     @endsection
