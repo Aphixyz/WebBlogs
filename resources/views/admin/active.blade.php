@@ -1,17 +1,3 @@
-{{-- <h1>
-        @if (session('message'))
-            <p>Welcome, {{ session('message') }}!</p>
-        @endif
-    <form action="{{route('admin.active')}}">
-        </h1>
-        <a href="{{ route('admin.getblog') }}">get blog</a>
-        <a href="{{ route('admin.formaddcategory') }}">add category</a>
-        <a href="{{ route('admin.getCategory') }}">get category</a>
-        <a href="{{ route('admin.getfromblog') }}">add blog</a>
-
-        <a href="{{route('logout')}}">logout</a>
-    </form> --}}
-
 @extends('admin.layout')
 
 @section('block-content')
@@ -20,8 +6,8 @@
         <!-- All Title -->
         <div class="block-title">
             <div class="block-options pull-right">
-                <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings"><i
-                        class="fa fa-cog"></i></a>
+                <a href="javascript:void(0)" class="btn btn-alt btn-sm btn-default" data-toggle="tooltip" title="Settings">
+                    <i class="fa fa-cog"></i></a>
             </div>
             <h2><strong>บทความทั้งหมด</strong></h2>
         </div>
@@ -35,6 +21,7 @@
                     <th>ภาพปก</th>
                     <th class="text-right hidden-xs">ชื่อบทความ</th>
                     <th class="hidden-xs">ยอดเข้าชม (View)</th>
+                    {{-- <th class="hidden-xs">ชื่อผู้เขียน</th> <!-- เพิ่มคอลัมน์ชื่อผู้เขียน --> --}}
                     <th class="hidden-xs text-center">หมวดหมู่บทความ</th>
                     <th class="text-center">Action</th>
                 </tr>
@@ -46,6 +33,7 @@
                         <td><img src="{{ asset($item->image) }}" alt="" style="width: 60px; height: 50px"></td>
                         <td class="text-right hidden-xs"><strong>{{ $item->name }}</strong></td>
                         <td class="text-center">{{ $item->connection }}</td>
+                        {{-- <td class="text-center">{{ $item->author->name }}</td> <!-- เพิ่มชื่อผู้เขียน --> --}}
                         <td class="hidden-xs text-center">{{ $item->category->name }}</td>
                         <td class="text-center">
                             <div class="btn-group btn-group-xs">

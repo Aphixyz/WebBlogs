@@ -34,10 +34,10 @@
                                 <a class="nav-link" href="/">บทความ</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">ล็อคอิน</a>
+                                <a class="nav-link" href="/login">ล็อกอิน</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/login">สมัครผู้เขียน</a>
+                                <a class="nav-link" href="/register">สมัครผู้เขียน</a>
                             </li>
                         </ul>
                     </div>

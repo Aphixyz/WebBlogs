@@ -48,6 +48,6 @@ class singInController extends Controller
             }
         }
 
-        return Redirect::back()->with('error', 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')->withInput();
+        return Redirect::back()->with('error', 'อีเมลหรือรหัสผ่านไม่ถูกต้อง')->withInput();
     }
 }
