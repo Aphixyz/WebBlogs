@@ -103,45 +103,45 @@ class admincontroller extends Controller
     }
 
     public function updateData(Request $req, $id)
-{
-    try {
-        $validatedData = $req->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'content' => 'required|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
-            'category_id' => 'required|exists:categories,id',
-        ]);
+    {
+        try {
+            $validatedData = $req->validate([
+                'name' => 'required|string|max:255',
+                'description' => 'required|string',
+                'content' => 'required|string',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+                'category_id' => 'required|exists:categories,id',
+            ]);
 
-        $blog = Blog::findOrFail($id);
+            $blog = Blog::findOrFail($id);
 
-        // อัปเดตรูปภาพถ้ามีการอัปโหลดรูปใหม่
-        if ($req->hasFile('image')) {
-            $image = $req->file('image');
-            if ($image->isValid()) {
-                if ($blog->image) {
-                    $oldImagePath = public_path($blog->image);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath); // ลบรูปเดิมถ้ามี
+            // อัปเดตรูปภาพถ้ามีการอัปโหลดรูปใหม่
+            if ($req->hasFile('image')) {
+                $image = $req->file('image');
+                if ($image->isValid()) {
+                    if ($blog->image) {
+                        $oldImagePath = public_path($blog->image);
+                        if (file_exists($oldImagePath)) {
+                            unlink($oldImagePath); // ลบรูปเดิมถ้ามี
+                        }
                     }
+                    $imageName = time() . '_' . $image->getClientOriginalName();
+                    $imagePath = $image->move(public_path('images'), $imageName);
+                    $blog->image = 'images/' . $imageName;
                 }
-                $imageName = time() . '_' . $image->getClientOriginalName();
-                $imagePath = $image->move(public_path('images'), $imageName);
-                $blog->image = 'images/' . $imageName;
             }
+
+            $blog->name = $validatedData['name'];
+            $blog->category_id = $validatedData['category_id'];
+            $blog->description = $validatedData['description'];
+            $blog->content = $validatedData['content'];
+            $blog->save(); // บันทึกข้อมูลลงฐานข้อมูล
+
+            return redirect()->route('admin.active')->with('success', 'บันทึกข้อมูลเรียบร้อย');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.active')->with('error', 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
         }
-
-        $blog->name = $validatedData['name'];
-        $blog->category_id = $validatedData['category_id'];
-        $blog->description = $validatedData['description'];
-        $blog->content = $validatedData['content'];
-        $blog->save(); // บันทึกข้อมูลลงฐานข้อมูล
-
-        return redirect()->route('admin.active')->with('success', 'บันทึกข้อมูลเรียบร้อย');
-    } catch (\Exception $e) {
-        return redirect()->route('admin.active')->with('error', 'เกิดข้อผิดพลาดในการบันทึกข้อมูล');
     }
-}
 
 
     public function getCategory()

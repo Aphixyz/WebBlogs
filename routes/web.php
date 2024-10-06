@@ -34,7 +34,7 @@ Route::middleware('admin')->group(function () {
     Route::delete('/active/addmin/category/delete/{id}', [AdminController::class, 'deleteCategory'])->name('admin.deleteCategory');
 
     Route::get('/admin/blogs/edit/{id}', [AdminController::class, 'editData'])->name('admin.editData');
-    Route::delete('/admin/blogs/delete/{id}', [AdminController::class, 'deleteData'])->name('admin.deleteData');
+    Route::delete('/deleteData/{id}', [AdminController::class, 'deleteData'])->name('deleteData');
     Route::put('/admin/blogs/update/{id}', [AdminController::class, 'updateData'])->name('admin.updateData');
 });
 
