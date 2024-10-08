@@ -62,25 +62,23 @@ class admincontroller extends Controller
     }
 
     public function deleteData($id)
-    {
-        try {
-            $blog = Blog::findOrFail($id);
-
-            // ตัวเลือก: ลบไฟล์ภาพหากมีอยู่
-            if ($blog->image) {
-                $oldImagePath = public_path($blog->image);
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath); // ลบภาพเก่า
-                }
+{
+    try {
+        $blog = Blog::findOrFail($id); // ค้นหาบล็อกจาก ID
+        if ($blog->image) { // ตรวจสอบว่ามีรูปภาพหรือไม่
+            $imagePath = public_path($blog->image); // ตรวจสอบไฟล์ภาพในโฟลเดอร์ public
+            if (file_exists($imagePath)) { // ถ้ามีไฟล์อยู่ ลบออก
+                unlink($imagePath);
             }
-
-            $blog->delete(); // ลบข้อมูลบล็อกจากฐานข้อมูล
-
-            return response()->json(['success' => 'บล็อกถูกลบสำเร็จ']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'เกิดข้อผิดพลาดในการลบบล็อก: ' . $e->getMessage()], 500);
         }
+        $blog->delete(); // ลบข้อมูลบล็อกออกจากฐานข้อมูล
+        return response()->json(['success' => 'ลบข้อมูลเรียบร้อย']);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'เกิดข้อผิดพลาดในการลบข้อมูล'], 500);
     }
+}
+
+
 
 
     public function editData($id)
